@@ -14,8 +14,6 @@ plateau = Plateau(fenetre)
 continuer = True
 
 while continuer:
-
-
     fenetre.fill(background)
     plateau.draw(fenetre)
 

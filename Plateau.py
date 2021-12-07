@@ -18,7 +18,7 @@ class Plateau:
         ["", "", "", "", "", "", "", ""],
         ["", "", "", "", "", "", "", ""],
         ["", "", "", "", "", "", "", ""],
-        [Pion("white"), Pion("white"), Pion("white"), Pion("white"), Pion("white"), Pion("white"), Pion("white"), Pion("white")],
+        [Pion("white"), Pion("white"), Pion("white"), Pion("white"), Pion("white"), Pion("white"), Pion("white"), ""],
         [Tour("white"), Cavalier("white"), Fou("white"), Dame("white"), Roi("white"), Fou("white"), Cavalier("white"), Tour("white")]
     ]):
 
@@ -65,8 +65,11 @@ class Plateau:
     def take_piece(self):
         pos = pygame.mouse.get_pos()
 
+
         square = pos[0] // self.size_x - 1, pos[1] // self.size_y - 1 
         if self.plateau[square[1]][square[0]]:
+            x = self.plateau[square[1]][square[0]].can_move(square, self.plateau)
+            print(x)
             self.moving_piece = self.plateau[square[1]][square[0]]
             self.original_moving_pos = square
     

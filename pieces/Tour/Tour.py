@@ -5,16 +5,51 @@ class Tour(Piece):
     def __init__(self, color):
         super().__init__(color, "Tour")
 
+    #get all possible moves of the piece
+    def can_move(self, pos, grid):
+        possible = []
 
-    def can_move(self, pos_depart, pos_arrivee, tab):
-        if pos_depart[0] == pos_arrivee[0]:
-            for k in range(pos_depart[1]+1, pos_arrivee[1]):
-                if tab[pos_depart[0]][k] != "":
-                    return False
+        #right
+        x = pos[0]+1
+        y = pos[1]
+        while x <= 7:
+            if grid[y][x] == "":
+                possible.append((x,y))
+                x += 1
+            else:
+                break
+            
+        #left
+        x = pos[0]-1
+        y = pos[1]
+        while x >= 0:
+            if grid[y][x] == "":
+                possible.append((x,y))
+                x -= 1
+            else:
+                break
+            
         
-        if pos_depart[1] == pos_arrivee[1]:
-            for k in range(pos_depart[0], pos_arrivee[0]):
-                if tab[k][pos_depart[1]] != "":
-                    return False
+        x = pos[0]
+        y = pos[1] + 1
+        #down
+        while y <= 7:
+            if grid[y][x] == "":
+                possible.append((x,y))
+                y += 1
+            else:
+                break
 
-        return False
+
+
+        x = pos[0]
+        y = pos[1] - 1
+        #up
+        while y >= 0:
+            if grid[y][x] == "":
+                possible.append((x,y))
+                y -= 1
+            else:
+                break
+
+        return possible
