@@ -5,7 +5,7 @@ from pygame.constants import MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION
 from Plateau import *
 
 
-hauteur, largeur = 1000, 1000
+hauteur, largeur = 1000, 500
 fenetre = pygame.display.set_mode((hauteur, largeur))
 background = (100, 135, 110)
 

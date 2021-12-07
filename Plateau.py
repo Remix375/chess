@@ -34,8 +34,6 @@ class Plateau:
         self.size_y = self.y_window_size // 10
 
 
-
-
     def draw(self, fenetre):
         #iteration on all pieces on chessboard
         for line in range(8):
@@ -45,7 +43,7 @@ class Plateau:
                 pos_y = self.size_y*(line+1)
 
                 #create board square
-                square = pygame.Rect(pos_x, pos_y, self.size_y, self.size_x)
+                square = pygame.Rect(pos_x, pos_y, self.size_x, self.size_y)
                 if ( line + case ) % 2 == 0:
                     pygame.draw.rect(fenetre, (100, 34, 53), square)
                 else:
@@ -63,14 +61,14 @@ class Plateau:
         #self.plateau[0][0].draw(fenetre, 100, 100)
 
 
-    #take piece to move it
+    #pick piece up to move it
     def take_piece(self):
         pos = pygame.mouse.get_pos()
 
         square = pos[0] // self.size_x - 1, pos[1] // self.size_y - 1 
-
-        self.moving_piece = self.plateau[square[1]][square[0]]
-        self.original_moving_pos = square
+        if self.plateau[square[1]][square[0]]:
+            self.moving_piece = self.plateau[square[1]][square[0]]
+            self.original_moving_pos = square
     
     #drop piece if grabbed
     def place_piece(self):
@@ -79,15 +77,15 @@ class Plateau:
         square = pos[0] // self.size_x - 1, pos[1] // self.size_y - 1 
 
 
-        if square[0] <= 8 and square[0] >= 0 and square[1] <= 8 and square[1] >= 0:
-            if self.moving_piece.can_move(self.original_moving_pos, square, self.plateau):
-                self.plateau[self.original_moving_pos[1]][self.original_moving_pos[0]] = ""
-                self.plateau[square[1]][square[0]] = self.moving_piece
+        if square[0] <= 7 and square[0] >= 0 and square[1] <= 7 and square[1] >= 0 and self.moving_piece:
+            #if self.moving_piece.can_move(self.original_moving_pos, square, self.plateau):
+            self.plateau[self.original_moving_pos[1]][self.original_moving_pos[0]] = ""
+            self.plateau[square[1]][square[0]] = self.moving_piece
             
 
         self.moving_piece = False
 
-    #move pice when grabbed
+    #move piece when grabbed
     def move_piece(self, movement):
         if self.moving_piece:
             self.moving_piece.move(movement)
@@ -107,4 +105,4 @@ class Plateau:
 
 
 
-#⊂(◉‿ ◉)つ
+#⊂(◉‿◉)つ

@@ -6,11 +6,10 @@ class Pion(Piece):
         super().__init__(color, "Pion")
 
 
-
+    #returns true if can move to the square:
+    #would be better to return all cases where can move --> to change
     def can_move(self, pos_depart, pos_arrivee, tab):
         if self.color == "white":
-            print(pos_arrivee[1] - pos_depart[1])
-            print(pos_arrivee, pos_depart)
             if (pos_arrivee[1] - pos_depart[1]) < -2:
                 return False
 
@@ -39,9 +38,6 @@ class Pion(Piece):
 
 
         if self.color == "black":
-            print(pos_arrivee[1] - pos_depart[1])
-            print(pos_depart, pos_arrivee)
-            print(tab[pos_arrivee[1]][pos_arrivee[0]])
             if (pos_arrivee[1] - pos_depart[1]) < 2:
                 return False
 
