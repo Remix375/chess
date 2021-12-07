@@ -14,7 +14,7 @@ class Fou(Piece):
         #top-right
         x = pos[0] + 1
         y = pos[1] - 1
-        while x <= 7 and y < 0:
+        while x <= 7 and y >= 0:
             if grid[y][x] == "":
                 possible.append((x,y))
                 x += 1
@@ -34,25 +34,25 @@ class Fou(Piece):
                 break
             
         #top-left
-        x = pos[0]
-        y = pos[1] + 1
-        
-        while y <= 7:
+        x = pos[0] - 1
+        y = pos[1] - 1
+        while y >= 0 and x >= 0:
             if grid[y][x] == "":
                 possible.append((x,y))
-                y += 1
+                x -= 1
+                y -= 1
             else:
                 break
 
 
-
-        x = pos[0]
-        y = pos[1] - 1
-        #up
-        while y >= 0:
+        #bottom-left
+        x = pos[0] - 1
+        y = pos[1] + 1
+        while y <= 7 and x >= 0:
             if grid[y][x] == "":
                 possible.append((x,y))
-                y -= 1
+                x -= 1
+                y += 1
             else:
                 break
 
