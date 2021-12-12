@@ -19,6 +19,8 @@ class Dame(Piece):
                 possible.append((x,y))
                 x += 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
             
         #left
@@ -29,6 +31,8 @@ class Dame(Piece):
                 possible.append((x,y))
                 x -= 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
             
         
@@ -40,6 +44,8 @@ class Dame(Piece):
                 possible.append((x,y))
                 y += 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
 
 
@@ -52,6 +58,8 @@ class Dame(Piece):
                 possible.append((x,y))
                 y -= 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
 
 
@@ -66,6 +74,8 @@ class Dame(Piece):
                 x += 1
                 y -= 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
             
         #bottom-right
@@ -77,6 +87,8 @@ class Dame(Piece):
                 x += 1
                 y += 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
             
         #top-left
@@ -88,6 +100,8 @@ class Dame(Piece):
                 x -= 1
                 y -= 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
 
 
@@ -100,6 +114,8 @@ class Dame(Piece):
                 x -= 1
                 y += 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
 
         return possible

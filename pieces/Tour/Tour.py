@@ -1,6 +1,7 @@
 import pygame
 from ..Piece import Piece
 
+
 class Tour(Piece):
     def __init__(self, color):
         super().__init__(color, "Tour")
@@ -17,6 +18,8 @@ class Tour(Piece):
                 possible.append((x,y))
                 x += 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
             
         #left
@@ -27,6 +30,8 @@ class Tour(Piece):
                 possible.append((x,y))
                 x -= 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
             
         
@@ -38,6 +43,8 @@ class Tour(Piece):
                 possible.append((x,y))
                 y += 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
 
 
@@ -50,6 +57,12 @@ class Tour(Piece):
                 possible.append((x,y))
                 y -= 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
 
         return possible
+
+    
+
+

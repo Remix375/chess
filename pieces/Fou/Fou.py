@@ -20,6 +20,8 @@ class Fou(Piece):
                 x += 1
                 y -= 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
             
         #bottom-right
@@ -31,6 +33,8 @@ class Fou(Piece):
                 x += 1
                 y += 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
             
         #top-left
@@ -42,6 +46,8 @@ class Fou(Piece):
                 x -= 1
                 y -= 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
 
 
@@ -54,6 +60,8 @@ class Fou(Piece):
                 x -= 1
                 y += 1
             else:
+                if grid[y][x].color != self.color:
+                    possible.append((x,y))
                 break
 
         return possible

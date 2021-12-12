@@ -4,3 +4,7 @@ from ..Piece import Piece
 class Roi(Piece):
     def __init__(self, color):
         super().__init__(color, "Roi")
+
+
+    def can_move(self,  pos, grid):
+        
