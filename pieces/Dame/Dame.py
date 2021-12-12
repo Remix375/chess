@@ -8,6 +8,7 @@ class Dame(Piece):
 
 
     #get all possible moves of the piece
+    #movement method
     def can_move(self, pos, grid):
         possible = []
 

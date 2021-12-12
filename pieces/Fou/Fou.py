@@ -11,6 +11,8 @@ class Fou(Piece):
     def can_move(self, pos, grid):
         possible = []
 
+        #if empty or if ennemie piece we can go
+
         #top-right
         x = pos[0] + 1
         y = pos[1] - 1

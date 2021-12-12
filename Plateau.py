@@ -25,6 +25,7 @@ class Plateau:
         self.plateau = plateau
 
         self.moving_piece = False
+        self.can_move_to = []
         self.original_moving_pos = ()
 
         self.x_window_size = fenetre.get_size()[0]
@@ -44,7 +45,9 @@ class Plateau:
 
                 #create board square
                 square = pygame.Rect(pos_x, pos_y, self.size_x, self.size_y)
-                if ( line + case ) % 2 == 0:
+                if (case, line) in self.can_move_to:
+                    pygame.draw.rect(fenetre, (20, 20, 20), square)
+                elif ( line + case ) % 2 == 0:
                     pygame.draw.rect(fenetre, (100, 34, 53), square)
                 else:
                     pygame.draw.rect(fenetre, (46, 225, 38), square)
@@ -68,8 +71,7 @@ class Plateau:
 
         square = pos[0] // self.size_x - 1, pos[1] // self.size_y - 1 
         if self.plateau[square[1]][square[0]]:
-            x = self.plateau[square[1]][square[0]].can_move(square, self.plateau)
-            print(x)
+            self.can_move_to = self.plateau[square[1]][square[0]].can_move(square, self.plateau)
             self.moving_piece = self.plateau[square[1]][square[0]]
             self.original_moving_pos = square
     
@@ -85,10 +87,11 @@ class Plateau:
             self.plateau[self.original_moving_pos[1]][self.original_moving_pos[0]] = ""
             self.plateau[square[1]][square[0]] = self.moving_piece
             
-
         self.moving_piece = False
+        self.can_move_to = []
 
     #move piece when grabbed
+    #draw moving piece
     def move_piece(self, movement):
         if self.moving_piece:
             self.moving_piece.move(movement)
