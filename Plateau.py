@@ -28,8 +28,8 @@ class Plateau:
         self.can_move_to = []
         self.original_moving_pos = ()
 
-        self.x_window_size = fenetre.get_size()[0]
-        self.y_window_size = fenetre.get_size()[1]
+        self.x_window_size = fenetre.get_size()[0] if fenetre.get_size()[0] < fenetre.get_size()[1] else fenetre.get_size()[1]
+        self.y_window_size = self.x_window_size
 
         self.size_x = self.x_window_size // 10
         self.size_y = self.y_window_size // 10
