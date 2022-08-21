@@ -9,8 +9,8 @@ class Roi(Piece):
     #get all possible movement of the piece
     def can_move(self, pos, grid):
         possible = []
-        x = pos[0]
-        y = pos[1]
+        x = pos[1]
+        y = pos[0]
 
         #iterate over all neiughbouring cases
         for i in range(-1, 2):
@@ -21,9 +21,9 @@ class Roi(Piece):
                 if current_x <= 7 and current_x >= 0 and current_y <= 7 and current_y >= 0:
                     #if empty or if ennemie piece, we can go there
                     if grid[current_y][current_x] == "":
-                        possible.append((current_x, current_y))
+                        possible.append((current_y, current_x))
                     else:
                         if grid[current_y][current_x].color != self.color:
-                            possible.append((current_x, current_y))
+                            possible.append((current_y, current_x))
         return possible
 
