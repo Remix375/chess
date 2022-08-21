@@ -13,54 +13,54 @@ class Tour(Piece):
         #if empty or if ennemie piece we can go
 
         #right
-        x = pos[0]+1
-        y = pos[1]
+        y = pos[0]
+        x = pos[1]+1
         while x <= 7:
             if grid[y][x] == "":
-                possible.append((x,y))
+                possible.append((y,x))
                 x += 1
             else:
                 if grid[y][x].color != self.color:
-                    possible.append((x,y))
+                    possible.append((y,x))
                 break
             
         #left
-        x = pos[0]-1
-        y = pos[1]
+        y = pos[0]
+        x = pos[1]-1
         while x >= 0:
             if grid[y][x] == "":
-                possible.append((x,y))
+                possible.append((y,x))
                 x -= 1
             else:
                 if grid[y][x].color != self.color:
-                    possible.append((x,y))
+                    possible.append((y,x))
                 break
             
         
-        x = pos[0]
-        y = pos[1] + 1
+        y = pos[0] + 1
+        x = pos[1]
         #down
         while y <= 7:
             if grid[y][x] == "":
-                possible.append((x,y))
+                possible.append((y,x))
                 y += 1
             else:
                 if grid[y][x].color != self.color:
-                    possible.append((x,y))
+                    possible.append((y,x))
                 break
 
 
 
-        x = pos[0]
-        y = pos[1] - 1
+        y = pos[0] - 1
+        x = pos[1]
         #up
         while y >= 0:
             if grid[y][x] == "":
-                possible.append((x,y))
+                possible.append((y, x))
                 y -= 1
             else:
                 if grid[y][x].color != self.color:
-                    possible.append((x,y))
+                    possible.append((y, x))
                 break
 
         return possible

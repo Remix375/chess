@@ -45,14 +45,14 @@ class Plateau:
 
                 #create board square
                 square = pygame.Rect(pos_x, pos_y, self.size_x, self.size_y)
-                if (case, line) in self.can_move_to:
+                if (line, case) in self.can_move_to:
                     pygame.draw.rect(fenetre, (20, 20, 20), square)
                 elif ( line + case ) % 2 == 0:
                     pygame.draw.rect(fenetre, (100, 34, 53), square)
                 else:
                     pygame.draw.rect(fenetre, (46, 225, 38), square)
 
-                #place piece on case if it is ther
+                #place piece on case if it is there
                 if self.plateau[line][case] and self.plateau[line][case] != self.moving_piece:
                     self.plateau[line][case].position(pos_x + self.size_x//2, pos_y + self.size_y//2)
                     self.plateau[line][case].draw(fenetre)
@@ -69,23 +69,24 @@ class Plateau:
         pos = pygame.mouse.get_pos()
 
 
-        square = pos[0] // self.size_x - 1, pos[1] // self.size_y - 1 
-        if self.plateau[square[1]][square[0]]:
-            self.can_move_to = self.plateau[square[1]][square[0]].can_move(square, self.plateau)
-            self.moving_piece = self.plateau[square[1]][square[0]]
+        square =  pos[1] // self.size_y - 1 ,pos[0] // self.size_x - 1
+        if self.plateau[square[0]][square[1]]:
+            print(square)
+            self.can_move_to = self.plateau[square[0]][square[1]].can_move(square, self.plateau)
+            self.moving_piece = self.plateau[square[0]][square[1]]
             self.original_moving_pos = square
     
     #drop piece if grabbed
     def place_piece(self):
         pos = pygame.mouse.get_pos()
 
-        square = pos[0] // self.size_x - 1, pos[1] // self.size_y - 1 
+        square = pos[1] // self.size_y - 1 , pos[0] // self.size_x - 1
 
 
-        if square[0] <= 7 and square[0] >= 0 and square[1] <= 7 and square[1] >= 0 and self.moving_piece:
+        if square[0] <= 7 and square[0] >= 0 and square[1] <= 7 and square[1] >= 0 and self.moving_piece and (square[0], square[1]) in self.can_move_to:
             #if self.moving_piece.can_move(self.original_moving_pos, square, self.plateau):
-            self.plateau[self.original_moving_pos[1]][self.original_moving_pos[0]] = ""
-            self.plateau[square[1]][square[0]] = self.moving_piece
+            self.plateau[self.original_moving_pos[0]][self.original_moving_pos[1]] = ""
+            self.plateau[square[0]][square[1]] = self.moving_piece
             
         self.moving_piece = False
         self.can_move_to = []
