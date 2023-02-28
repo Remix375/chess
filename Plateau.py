@@ -7,7 +7,7 @@ from pieces.Tour.Tour import *
 from pieces.Roi.Roi import *
 from pieces.Dame.Dame import *
 
-
+from util_functions import Utils
 
 
 class Plateau:
@@ -74,7 +74,25 @@ class Plateau:
         square =  pos[1] // self.size_y - 1 ,pos[0] // self.size_x - 1
         if self.plateau[square[0]][square[1]] and self.plateau[square[0]][square[1]].color == self.turn:
             print(square)
-            self.can_move_to = self.plateau[square[0]][square[1]].can_move(square, self.plateau)
+
+            for i in self.plateau[square[0]][square[1]].can_move(square, self.plateau):
+                #copy self.plateau
+                b = []
+                for elt in self.plateau:
+                    v = []
+                    for k in elt:
+                        v.append(k)
+                    b.append(v)
+
+                #test all possible moves to see if it puts in check
+                b[i[0]][i[1]] = b[square[0]][square[1]]
+                b[square[0]][square[1]] = ""
+
+                if not Utils.king_in_danger(b, self.turn):
+                    self.can_move_to.append(i)
+
+                print(self.plateau)
+                
             self.moving_piece = self.plateau[square[0]][square[1]]
             self.original_moving_pos = square
     
