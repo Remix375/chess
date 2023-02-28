@@ -67,3 +67,4 @@ class Fou(Piece):
                 break
 
         return possible
+#⊂(◉‿◉)つ

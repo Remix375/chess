@@ -22,3 +22,4 @@ class Cavalier(Piece):
                     if grid[y+i][x+k] == "" or grid[y+i][x+k].color != self.color:
                         possible.append((y+i, x+k))
         return possible
+#⊂(◉‿◉)つ

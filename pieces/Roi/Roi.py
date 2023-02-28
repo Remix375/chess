@@ -27,3 +27,4 @@ class Roi(Piece):
                             possible.append((current_y, current_x))
         return possible
 
+#⊂(◉‿◉)つ

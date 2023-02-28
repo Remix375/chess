@@ -119,3 +119,7 @@ class Dame(Piece):
                 break
 
         return possible
+    
+
+
+#⊂(◉‿◉)つ

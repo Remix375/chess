@@ -44,3 +44,7 @@ class Pion(Piece):
 
 
         return True
+    
+
+
+#⊂(◉‿◉)つ

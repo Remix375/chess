@@ -24,6 +24,8 @@ class Plateau:
 
         self.plateau = plateau
 
+        self.turn = "white"
+
         self.moving_piece = False
         self.can_move_to = []
         self.original_moving_pos = ()
@@ -70,7 +72,7 @@ class Plateau:
 
 
         square =  pos[1] // self.size_y - 1 ,pos[0] // self.size_x - 1
-        if self.plateau[square[0]][square[1]]:
+        if self.plateau[square[0]][square[1]] and self.plateau[square[0]][square[1]].color == self.turn:
             print(square)
             self.can_move_to = self.plateau[square[0]][square[1]].can_move(square, self.plateau)
             self.moving_piece = self.plateau[square[0]][square[1]]
@@ -84,9 +86,9 @@ class Plateau:
 
 
         if square[0] <= 7 and square[0] >= 0 and square[1] <= 7 and square[1] >= 0 and self.moving_piece and (square[0], square[1]) in self.can_move_to:
-            #if self.moving_piece.can_move(self.original_moving_pos, square, self.plateau):
             self.plateau[self.original_moving_pos[0]][self.original_moving_pos[1]] = ""
             self.plateau[square[0]][square[1]] = self.moving_piece
+            self.turn = "white" if self.turn == "black" else "black"
             
         self.moving_piece = False
         self.can_move_to = []

@@ -27,3 +27,4 @@ class Piece:
 
     def __str__(self):
         return self.piece
+#⊂(◉‿◉)つ

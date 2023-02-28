@@ -67,4 +67,4 @@ class Tour(Piece):
 
     
 
-
+#⊂(◉‿◉)つ
